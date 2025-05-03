@@ -20,3 +20,6 @@ for package in "${packages[@]}"; do
 done
 
 echo "All packages from the setup script have been installed."
+
+cp -f .bashrc $HOME
+cp -rf -t $HOME/.config gh lazygit
