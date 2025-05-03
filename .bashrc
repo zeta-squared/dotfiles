@@ -149,12 +149,12 @@ ex ()
 
 eval "$(fzf --bash)"
 
-alias bashrc='vim /home/zeaiter/.bashrc'
+alias bashrc='vim $HOME/.bashrc'
 alias vim=nvim
-alias invim='cd /home/zeaiter/.config/nvim && vim'
+alias invim='cd $HOME/.config/nvim && vim'
 alias python=python3
 alias pip='python3 -m pip'
-alias tipon='cd /home/zeaiter/Documents/Tipon/ && source venv/bin/activate'
+alias tipon='cd $HOME/Documents/Tipon/ && source venv/bin/activate'
 alias sd='cd ~ && cd "$(fzf --walker=dir,follow,hidden --reverse --height 40%)"'
 
 export PATH="$HOME/.local/bin:$PATH"
