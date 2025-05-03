@@ -25,7 +25,17 @@ cp -f .bashrc $HOME
 cp -rf -t $HOME/.config gh lazygit
 echo "Dotfiles have been installed."
 
-echo "Install vim-plug..."
-sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
-       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+echo "Installing vim-plug..."
+curl -fLo ${XDG_DATA_HOME:-$HOME}/.local/share/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 echo "Vim-plug has been installed."
+
+echo "Creating python provider for neovim..."
+python3 -m venv $HOME/.local/share/nvim/nvim_venv
+source $HOME/.local/share/nvim/nvim_venv/bin/activate
+pip install pynvim
+deactive
+echo "Python provider setup complete."
+
+echo "Running plugin installation in neovim..."
+vim -c PlugInstall -c q -c q
+echo "Neovim plugins installed."
