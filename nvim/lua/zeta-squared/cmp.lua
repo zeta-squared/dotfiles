@@ -30,6 +30,18 @@ vim.api.nvim_create_autocmd('LspAttach', {
 
 require('mason').setup({})
 
+require('mason-tool-installer').setup({
+    ensure_installed = {
+        'python-lsp-server',
+        'typescript-language-server',
+        'lua-language-server',
+        'yaml-language-server',
+        'texlab',
+        'debugpy',
+        'js-debug-adapter',
+    }
+})
+
 require('mason-lspconfig').setup({
     handlers = {
         function(server_name)
