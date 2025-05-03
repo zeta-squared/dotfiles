@@ -16,7 +16,7 @@ packages=(
 
 for package in "${packages[@]}"; do
     echo "Installing $package..."
-    brew install "$package"
+    /home/linuxbrew/.linuxbrew/bin/brew install "$package"
 done
 
 echo "All packages from the setup script have been installed."
