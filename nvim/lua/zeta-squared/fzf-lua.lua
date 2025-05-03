@@ -15,11 +15,9 @@ fzflua.setup({
 		},
 	},
 	files = {
-		true,
 		rg_opts = [[--color=never --files --hidden --follow -g "!.git" -g "!node_modules" -g "!venv" -g "!__pycache__"]],
 	},
 	grep = {
-		true,
 		rg_opts = [[-g "!.git" -g "!node_modules" -g "!venv" -g "!__pycache__" --column --line-number --no-heading --color=always --smart-case --max-columns=4096 -e]],
 	},
 })
