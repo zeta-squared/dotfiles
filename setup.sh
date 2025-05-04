@@ -1,15 +1,14 @@
 #!/bin/bash
 
-HOMEBREW = /home/linuxbrew/.linuxbrew/bin/brew
+HOMEBREW=/home/linuxbrew/.linuxbrew/bin/brew
 echo "Setup bash user profile"
 cp -f .bashrc $HOME
 source $HOME/.bashrc
 
 # Check if setup is being performed on a linux container on arm64 hardware (i.e Apple Silicon for work
 # machine).
-if [[ ${uname -m} == "aarch64" ]] then
+if [[ ${uname -m} == "aarch64" ]]; then
     echo "Installing for arm64 MacOS hardware..."
-    HOMEBREW_ON_MACOS = 1
     # /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
     curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh
     sudo mkdir -p /opt/homebrew
@@ -17,7 +16,7 @@ if [[ ${uname -m} == "aarch64" ]] then
     echo >> $HOME/.bashrc
     echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> $HOME/.bashrc
     eval "$(/opt/homebrew/bin/brew shellenv)"
-    HOMEBREW = /opt/homebrew/bin/brew
+    HOMEBREW=/opt/homebrew/bin/brew
 fi
 
 packages=(
