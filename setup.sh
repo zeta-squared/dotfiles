@@ -10,8 +10,8 @@ source $HOME/.bashrc
 # machine).
 if [[ ${UNAME_MACHINE} == "aarch64" ]]; then
     echo "Installing for arm64 MacOS hardware..."
-    # /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-    curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    # curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh
     sudo mkdir -p /opt/homebrew
     sudo mv /home/linuxbrew/.linuxbrew/* /opt/homebrew/
     echo >> $HOME/.bashrc
