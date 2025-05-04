@@ -58,5 +58,5 @@ deactive
 echo "Python provider setup complete."
 
 echo "Running plugin installation in neovim..."
-vim -c PlugInstall -c q -c q
+nvim -c PlugInstall -c q -c q
 echo "Neovim plugins installed."
