@@ -13,6 +13,7 @@ if [[ ${uname -m} == "aarch64" ]] then
     # /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
     curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh
     sudo mkdir -p /opt/homebrew
+    sudo mv /home/linuxbrew/.linuxbrew/* /opt/homebrew/
     echo >> $HOME/.bashrc
     echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> $HOME/.bashrc
     eval "$(/opt/homebrew/bin/brew shellenv)"
@@ -54,5 +55,5 @@ deactive
 echo "Python provider setup complete."
 
 echo "Running plugin installation in neovim..."
-/bin/bash vim -c PlugInstall -c q -c q
+vim -c PlugInstall -c q -c q
 echo "Neovim plugins installed."
