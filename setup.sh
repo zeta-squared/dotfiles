@@ -3,7 +3,6 @@
 packages=(
     ripgrep
     fzf
-    zathura
     gh
     lazygit
 )
