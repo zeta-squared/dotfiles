@@ -1,6 +1,6 @@
 #!/bin/bash
 
-HOMEBREW=/home/linuxbrew/.linuxbrew/bin/brew
+HOMEBREW=/home/linuxbrew/.linuxbrew/bin
 UNAME_MACHINE="$(/usr/bin/uname -m)"
 echo "Setup bash user profile"
 cp -f .bashrc $HOME
@@ -27,7 +27,7 @@ if [[ ${UNAME_MACHINE} == "aarch64" ]]; then
     echo >> $HOME/.bashrc
     echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> $HOME/.bashrc
     eval "$(/opt/homebrew/bin/brew shellenv)"
-    HOMEBREW=/opt/homebrew/bin/brew
+    HOMEBREW=/opt/homebrew/bin
 else
     echo >> $HOME/.bashrc
     echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >> $HOME/.bashrc
@@ -36,7 +36,7 @@ fi
 
 for package in "${packages[@]}"; do
     echo "Installing $package..."
-    ${HOMEBREW} install "$package"
+    ${HOMEBREW}/brew install "$package"
 done
 
 echo "All packages from the setup script have been installed."
@@ -62,5 +62,5 @@ deactive
 echo "Python provider setup complete."
 
 echo "Running plugin installation in neovim..."
-${HOMEBREW}/bin/nvim -c PlugInstall -c q -c q
+${HOMEBREW}/nvim -c PlugInstall -c q -c q
 echo "Neovim plugins installed."
