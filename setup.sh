@@ -28,6 +28,10 @@ if [[ ${UNAME_MACHINE} == "aarch64" ]]; then
     echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> $HOME/.bashrc
     eval "$(/opt/homebrew/bin/brew shellenv)"
     HOMEBREW=/opt/homebrew/bin/brew
+else
+    echo >> $HOME/.bashrc
+    echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >> $HOME/.bashrc
+    eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 fi
 
 for package in "${packages[@]}"; do
