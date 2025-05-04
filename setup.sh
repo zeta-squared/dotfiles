@@ -6,26 +6,27 @@ echo "Setup bash user profile"
 cp -f .bashrc $HOME
 source $HOME/.bashrc
 
-# Check if setup is being performed on a linux container on arm64 hardware (i.e Apple Silicon for work
-# machine).
-if [[ ${UNAME_MACHINE} == "aarch64" ]]; then
-    echo "Installing for arm64 MacOS hardware..."
-    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-    # curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh
-    sudo mkdir -p /opt/homebrew
-    sudo mv /home/linuxbrew/.linuxbrew/* /opt/homebrew/
-    echo >> $HOME/.bashrc
-    echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> $HOME/.bashrc
-    eval "$(/opt/homebrew/bin/brew shellenv)"
-    HOMEBREW=/opt/homebrew/bin/brew
-fi
-
 packages=(
     ripgrep
     fzf
     gh
     lazygit
 )
+
+# Check if setup is being performed on a linux container on arm64 hardware (i.e Apple Silicon for work
+# machine). This is a temporary work around until there is support for arm64 linux distributions for homebrew
+# (see https://github.com/Homebrew/brew/issues/19208).
+if [[ ${UNAME_MACHINE} == "aarch64" ]]; then
+    echo "Installing for arm64 MacOS hardware..."
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    sudo mkdir -p /opt/homebrew
+    sudo mv /home/linuxbrew/.linuxbrew/* /opt/homebrew/
+    echo >> $HOME/.bashrc
+    echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> $HOME/.bashrc
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+    HOMEBREW=/opt/homebrew/bin/brew
+    packages+=(neovim)
+fi
 
 for package in "${packages[@]}"; do
     echo "Installing $package..."
