@@ -147,7 +147,7 @@ ex ()
 #
 #alias vim=vimsn
 
-eval "$(fzf --bash)"
+#eval "$(fzf --bash)"
 
 alias bashrc='vim $HOME/.bashrc'
 alias vim=nvim
