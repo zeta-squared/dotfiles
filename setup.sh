@@ -1,7 +1,7 @@
 #!/bin/bash
 
 HOMEBREW=/home/linuxbrew/.linuxbrew/bin/brew
-UNAME_MACHINE=${/usr/bin/uname -m}
+UNAME_MACHINE="$(/usr/bin/uname -m)"
 echo "Setup bash user profile"
 cp -f .bashrc $HOME
 source $HOME/.bashrc
