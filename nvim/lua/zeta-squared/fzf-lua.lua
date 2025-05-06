@@ -7,6 +7,11 @@ fzflua.setup({
 	keymap = {
 		builtin = {
 			true,
+			-- ["<C-k>"] = "preview-page-up",
+			-- ["<C-j>"] = "preview-page-down",
+			-- ["<C-i>"] = "preview-up",
+			-- ["<C-u>"] = "preview-down",
+            -- ["<C-[>"] = "hide",
 			["<C-k>"] = "preview-page-up",
 			["<C-j>"] = "preview-page-down",
 			["<C-i>"] = "preview-up",

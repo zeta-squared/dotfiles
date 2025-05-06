@@ -30,18 +30,6 @@ vim.api.nvim_create_autocmd('LspAttach', {
 
 require('mason').setup({})
 
-require('mason-tool-installer').setup({
-    ensure_installed = {
-        'python-lsp-server',
-        'typescript-language-server',
-        'lua-language-server',
-        'yaml-language-server',
-        'texlab',
-        'debugpy',
-        'js-debug-adapter',
-    }
-})
-
 require('mason-lspconfig').setup({
     handlers = {
         function(server_name)
@@ -91,7 +79,7 @@ require('nvim-ts-autotag').setup({})
 --vim.keymap.set('i', '<Tab>', '<Plug>(Tabout)')
 --vim.keymap.set('i', '<C-f>', '<Plug>(TaboutMulti)')
 --vim.keymap.set('i', '<C-d>', '<Plug>(TaboutBackMulti)')
-vim.g.UltiSnipsSnippetDirectories = {os.getenv("HOME") .. '/.local/share/nvim/UltiSnips'}
+vim.g.UltiSnipsSnippetDirectories = {os.getenv('HOME') .. '/.local/share/nvim/UltiSnips'}
 vim.g.UltiSnipsEditSplit = 'vertical'
 vim.g.UltiSnipsExpandTrigger = '<Tab>'
 vim.g.UltiSnipsJumpForwardTrigger = '<Tab>'
