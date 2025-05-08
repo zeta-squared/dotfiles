@@ -1,5 +1,6 @@
 #!/bin/bash
 
+DOTFILES_DIR=$(dirname "$(realpath $0)")
 HOMEBREW=/home/linuxbrew/.linuxbrew/bin
 UNAME_MACHINE="$(/usr/bin/uname -m)"
 echo "Setup bash user profile"
@@ -24,13 +25,13 @@ if [[ ${UNAME_MACHINE} == "aarch64" ]]; then
     echo "Configuring homebrew for arm64..."
     sudo mkdir -p /opt/homebrew
     sudo mv /home/linuxbrew/.linuxbrew/* /opt/homebrew/
-    echo >> $HOME/.bashrc
-    echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> $HOME/.bashrc
+    echo >> ${HOME}/.bashrc
+    echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> ${HOME}/.bashrc
     eval "$(/opt/homebrew/bin/brew shellenv)"
     HOMEBREW=/opt/homebrew/bin
 else
-    echo >> $HOME/.bashrc
-    echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >> $HOME/.bashrc
+    echo >> ${HOME}/.bashrc
+    echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >> ${HOME}/.bashrc
     eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 fi
 
@@ -42,21 +43,20 @@ done
 echo "All packages from the setup script have been installed."
 
 echo "Installing dotfiles..."
-mkdir -p $HOME/.local/share/nvim
-mkdir -p $HOME/.config/nvim
-cp -r -t $HOME/.local/share/nvim nvim/UltiSnips nvim/spell
-cp -r -t $HOME/.config/nvim nvim/lua nvim/ftplugin nvim/init.lua
-cp nvim/pycodestyle $HOME/.config
-cp -rf -t $HOME/.config gh lazygit
-echo "Dotfiles have been installed."
+cp -ft ${HOME} ${DOTFILES_DIR}/.bashrc
+source ${HOME}/.bashrc
+cp -rf ${DOTFILES_DIR}/config/* ${HOME}/.config/
+cp -rf ${DOTFILES_DIR}/local/* ${HOME}/.local/
+echo "Successfully installed dotfiles."
 
 echo "Installing vim-plug..."
-curl -fLo ${XDG_DATA_HOME:-$HOME}/.local/share/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
+       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 echo "Vim-plug has been installed."
 
 echo "Creating python provider for neovim..."
-python3 -m venv $HOME/.local/share/nvim/nvim_venv
-source $HOME/.local/share/nvim/nvim_venv/bin/activate
+python3 -m venv ${HOME}/.local/share/nvim/nvim_venv
+source ${HOME}/.local/share/nvim/nvim_venv/bin/activate
 pip install pynvim
 deactive
 echo "Python provider setup complete."
